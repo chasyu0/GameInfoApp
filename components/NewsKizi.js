@@ -12,8 +12,7 @@ const NewsKizi = ({title, subtext, image}) => {
           <View style={styles.gazoBox}>
             {image && (
           <Image style={styles.image} 
-          source={{ uri: image }} 
-          />
+          source={image } />
           )}
         </View>
         </View>   
@@ -37,12 +36,14 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 8,
     justifyContent: 'center',
+    backgroundColor: '#d1edee',
   },
 
   gazoBox: {
     width: 100,
     height: 100,
     alignItems: "center",
+    backgroundColor: "powderblue",
   },
 
   image: {
@@ -52,7 +53,6 @@ const styles = StyleSheet.create({
   
   titleText: {
     fontSize: 14,
-    fontWeight: 'bold',
   },
   subText: {
     fontSize: 12,

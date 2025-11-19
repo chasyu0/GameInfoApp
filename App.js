@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, ScrollView, View, Text, Image } from 'react-native';
-import { sampleGames } from './GameData';
+import React, { useState } from 'react';
+import { StyleSheet, ScrollView } from 'react-native';
+import { GameData } from './GameData';
+import NewsKizi from './components/NewsKizi';
 
 export default function App() {
-  const [games, setGames ] = useState(sampleGames);
+  const [games, setGames ] = useState(GameData);
 
 return (
     <ScrollView contentContainerStyle={styles.container}>
       {games.map((game) => (
         <NewsKizi
           key={game.id}
-          title={game.name}
-          subtext={`Released: ${game.released} | Rating: ${game.rating}`}
-          image={game.background_image}
+          title={game.title}
+          subtext={game.subtext}
+          image={game.image}
         />
       ))}
     </ScrollView>
