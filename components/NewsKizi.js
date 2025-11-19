@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-const NewsKizi = ({title, subtext}) => {
+const NewsKizi = ({title, subtext, image}) => {
     return(
          <View style = {styles.box}>
               <View style={styles.moziBox}>
@@ -9,46 +9,53 @@ const NewsKizi = ({title, subtext}) => {
                 <Text style={styles.subText}>{subtext}</Text>
               </View>
 
-              <View style={styles.gazoBox}>      
-              <Image
-                style={{width: 100, height: 100}} 
-                source={require('../assets/torugal.jpg')}
-              />
-              </View>
-            </View>
-    );
+          <View style={styles.gazoBox}>
+            {image && (
+          <Image style={styles.image} 
+          source={{ uri: image }} 
+          />
+          )}
+        </View>
+        </View>   
+  );
 };
 
 export default NewsKizi;
 
 const styles = StyleSheet.create({
-
   box: {
-    height: 100,
+    flexDirection: 'row',
     width: '100%',
     borderColor: 'lightblue',
     borderWidth: 1,
-    flexDirection: 'row',
+    borderRadius: 8,
+    marginBottom: 10,
+    overflow: 'hidden',
   },
 
   moziBox: {
     flex: 1,
-    backgroundColor: "steelblue",
-    padding: 16,
-    justifyContent: "flex-start",
+    padding: 8,
+    justifyContent: 'center',
   },
 
-    gazoBox: {
+  gazoBox: {
     width: 100,
-    backgroundColor: "powderblue",
+    height: 100,
+    alignItems: "center",
   },
 
-  text: {
-    fontSize: 12,
+  image: {
+    width: 100,
+    height: 100,
   },
-
+  
+  titleText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
   subText: {
     fontSize: 12,
-    color:"red",
-  }
+    color: '#666',
+  },
 });
