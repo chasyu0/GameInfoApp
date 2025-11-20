@@ -25,13 +25,5 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-  //   "expo": {
-  //   "name": "GameInfoApp",
-  //   "slug": "gameinfoapp",
-  //   "version": "1.0.0",  
-  //   "extra": {
-  //     "RAWG_KEY": ""
-  //   }
-  // }
 }
 }

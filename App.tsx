@@ -1,20 +1,18 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
-import NewsScreen from './screens/NewsScreen';
+import { View, StyleSheet } from 'react-native';
+import NewsList from './screens/NewsList';
+import NavBar from './components/NavBar';
 
 const App: React.FC = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <NewsScreen />
-    </SafeAreaView>
+    <View style={styles.container}>
+      <NewsList />
+    </View>
   );
 };
 
 export default App;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
+  container: { flex: 1 },
 });
