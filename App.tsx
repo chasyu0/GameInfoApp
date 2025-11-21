@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 const App: React.FC = () => {
   return (
     <View style={styles.container}>
+      <NavBar />
       <NewsList />
     </View>
   );
