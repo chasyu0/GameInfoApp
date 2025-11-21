@@ -5,7 +5,7 @@ import { navStyles } from '../styles/NavBar';
 const NavBar: React.FC = () => {
   return (
     <View style={navStyles.container}>
-      {['뉴스', '신작', '인기', '마이리스트'].map((item) => (
+      {['ニュース', '新作', '人気', 'マイリスト'].map((item) => (
         <TouchableOpacity key={item} style={navStyles.button}>
           <Text style={navStyles.label}>{item}</Text>
         </TouchableOpacity>

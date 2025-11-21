@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { View, FlatList } from 'react-native';
-import { GameData } from '../data/GameData';
+import { FlatList, View, SafeAreaView, StyleSheet } from 'react-native';
 import NewsBox from '../components/NewsBox';
-import { newsListStyles } from '../styles/NewsList';
+import { GameData } from '../data/GameData';
 
 const NewsList: React.FC = () => {
-  const [games] = useState(GameData);
+  const [games, setGames] = useState(GameData);
 
   return (
-    <View style={newsListStyles.container}>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={games}
         keyExtractor={(item) => item.id.toString()}
@@ -20,8 +19,16 @@ const NewsList: React.FC = () => {
           />
         )}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
 export default NewsList;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    padding: 8,
+  },
+});

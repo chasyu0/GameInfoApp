@@ -1,19 +1,52 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, SafeAreaView, Text } from 'react-native';
 import NewsList from './screens/NewsList';
 import NavBar from './components/NavBar';
 
 const App: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <NavBar />
-      <NewsList />
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        {/* 상단 타이틀 */}
+        <View style={styles.header}>
+          <Text style={styles.headerText}>ニュース</Text>
+        </View>
+
+        {/* 뉴스 리스트 */}
+        <View style={styles.content}>
+          <NewsList />
+        </View>
+
+        {/* 하단 NavBar */}
+        <NavBar />
+      </View>
+    </SafeAreaView>
   );
 };
 
 export default App;
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  container: {
+    flex: 1,
+  },
+  header: {
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+    backgroundColor: '#fff',
+  },
+  headerText: {
+    fontSize: 20,
+    // fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  content: {
+    flex: 1, // 남은 공간 차지
+  },
 });
