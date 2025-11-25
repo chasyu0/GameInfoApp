@@ -29,7 +29,7 @@ export default App;
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#be5b5bff',
   },
   container: {
     flex: 1,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    borderBottomColor: '#000000ff',
     backgroundColor: '#fff',
   },
   headerText: {

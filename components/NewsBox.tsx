@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: '#4144ffff',
     marginBottom: 0,  // 칸 간 최소 여백
   },
   textBox: {

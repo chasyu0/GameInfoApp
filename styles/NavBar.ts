@@ -5,7 +5,7 @@ export const navStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingVertical: 12,
-    backgroundColor: '#eee',
+    backgroundColor: '#217d8dff',
   },
   button: {
     paddingHorizontal: 8,

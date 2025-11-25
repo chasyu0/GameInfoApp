@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
-import { FlatList, View, SafeAreaView, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { FlatList, SafeAreaView, StyleSheet } from 'react-native';
 import NewsBox from '../components/NewsBox';
-import { GameData } from '../data/GameData';
+import { Game, getGames } from '../api/rawg';
 
 const NewsList: React.FC = () => {
-  const [games, setGames] = useState(GameData);
+  const [games, setGames] = useState<Game[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const data = await getGames();
+      console.log('Fetched games:', data);  //데이터 체크용!
+      setGames(data);
+    })();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -13,9 +21,9 @@ const NewsList: React.FC = () => {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <NewsBox
-            title={item.title}
-            subtext={item.subtext}
-            image={item.image}
+            title={item.name}
+            subtext={`Rating: ${item.rating}`}
+            image={{ uri: item.backgroundImage }}
           />
         )}
       />
@@ -28,7 +36,7 @@ export default NewsList;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#b9ffc7ff',
     padding: 8,
   },
 });
