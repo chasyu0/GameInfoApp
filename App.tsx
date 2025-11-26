@@ -1,26 +1,25 @@
 import React from 'react';
-import { View, StyleSheet, SafeAreaView, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import NewsList from './screens/NewsList';
-import NavBar from './components/NavBar';
+import NewsDetail from './screens/NewsDetail'; // 새 화면 추가
+
+export type RootStackParamList = {
+  NewsList: undefined;
+  NewsDetail: { gameId: number };
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App: React.FC = () => {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        {/* 상단 타이틀 */}
-        <View style={styles.header}>
-          <Text style={styles.headerText}>ニュース</Text>
-        </View>
-
-        {/* 뉴스 리스트 */}
-        <View style={styles.content}>
-          <NewsList />
-        </View>
-
-        {/* 하단 NavBar */}
-        <NavBar />
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="NewsList">
+        <Stack.Screen name="NewsList" component={NewsList} options={{ title: 'ニュース' }} />
+        <Stack.Screen name="NewsDetail" component={NewsDetail} options={{ title: 'Game Detail' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
@@ -33,20 +32,5 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-  },
-  header: {
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#000000ff',
-    backgroundColor: '#fff',
-  },
-  headerText: {
-    fontSize: 20,
-    // fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  content: {
-    flex: 1, // 남은 공간 차지
   },
 });

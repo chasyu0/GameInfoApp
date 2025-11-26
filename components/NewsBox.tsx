@@ -1,56 +1,47 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { TouchableOpacity, Image, Text, View, StyleSheet } from 'react-native';
 
 interface Props {
   title: string;
   subtext: string;
-  image: any;
+  image: { uri: string };
+  onpress?: () => void;
 }
 
-const NewsBox: React.FC<Props> = ({ title, subtext, image }) => {
+const NewsBox: React.FC<Props> = ({ title, subtext, image, onpress }) => {
   return (
-    <View style={styles.box}>
-      <View style={styles.textBox}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subtext}>{subtext}</Text>
-      </View>
-
-      <View style={styles.imageBox}>
-        {image && <Image style={styles.image} source={image} />}
-      </View>
-    </View>
+    <TouchableOpacity style={styles.container} onPress={onpress}>
+      <Image source={{ uri: image.uri ?? 'https://via.placeholder.com/150' }} style={styles.image} />
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.subtext}>{subtext}</Text>
+    </TouchableOpacity>
   );
 };
 
 export default NewsBox;
 
 const styles = StyleSheet.create({
-  box: {
-    flexDirection: 'row',
-    width: '100%',
-    borderWidth: 1,
-    borderColor: '#4144ffff',
-    marginBottom: 0,  // 칸 간 최소 여백
-  },
-  textBox: {
-    flex: 1,
-    padding: 8,
-    justifyContent: 'center',
-  },
-  imageBox: {
-    width: 100,
-    height: 100,
+  container: {
+    marginBottom: 12,
+    borderRadius: 8,
+    backgroundColor: '#fff',
+    overflow: 'hidden',
+    elevation: 2,
   },
   image: {
-    width: 100,
-    height: 100,
+    width: '100%',
+    height: 150,
   },
   title: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: 'bold',
+    paddingHorizontal: 8,
+    paddingTop: 4,
   },
   subtext: {
-    fontSize: 12,
-    color: '#973d3dff',
+    fontSize: 14,
+    paddingHorizontal: 8,
+    paddingBottom: 4,
+    color: '#555',
   },
 });

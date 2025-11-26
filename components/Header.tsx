@@ -1,13 +1,27 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { headerStyles } from '../styles/Header';
+import { View, Text, StyleSheet } from 'react-native';
 
 const Header: React.FC<{ title: string }> = ({ title }) => {
   return (
-    <View style={headerStyles.container}>
-      <Text style={headerStyles.text}>{title}</Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>{title}</Text>
     </View>
   );
 };
 
 export default Header;
+
+const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+    backgroundColor: '#fff',
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+});
