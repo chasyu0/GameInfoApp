@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Demo Game",
+    "released": "2025-01-01",
+    "rating": 4.5,
+    "backgroundImage": "https://example.com/image.png"
+  },
+  {
+    "id": 2,
+    "name": "Adventure Quest",
+    "released": "2025-02-10",
+    "rating": 4.2,
+    "backgroundImage": "https://example.com/image2.png"
+  },
+  {
+    "id": 3,
+    "name": "Space Battle",
+    "released": "2025-03-05",
+    "rating": 3.8,
+    "backgroundImage": "https://example.com/image3.png"
+  }
+]

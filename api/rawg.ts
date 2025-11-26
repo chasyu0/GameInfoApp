@@ -12,15 +12,15 @@ export interface Game {
 }
 
 // 모든 게임 정보 가져오기 
-export const getGames = async (): Promise<Game[]> => {
-    try {
-        const response = await axios.get<Game[]>(`${BASE_URL}/games`);
-        return response.data;
-    } catch (errror) {
-        console.error('Error fetching games:', errror);
-        return[];
-    }
-};
+export async function getGames(): Promise<Game[]> {
+  try {
+    const response = await axios.get<Game[]>(`${BASE_URL}/games`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching games:", error);
+    return [];
+  }
+}
 
 // 특정 게임 ID 가져오기 
 export const getGameById = async (id: number): Promise<Game | null> => {
