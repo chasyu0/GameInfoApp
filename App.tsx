@@ -1,35 +1,41 @@
+// App.tsx
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import NewsList from './screens/NewsList';
-import NewsDetail from './screens/NewsDetail'; // 새 화면 추가
+import { createStackNavigator } from '@react-navigation/stack';
+import { View, Text, Button } from 'react-native';
 
-export type RootStackParamList = {
-  NewsList: undefined;
-  NewsDetail: { gameId: number };
+type RootStackParamList = {
+  Home: undefined;
+  Details: undefined;
 };
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator<RootStackParamList>();
 
-const App: React.FC = () => {
+const HomeScreen = ({ navigation }: any) => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="NewsList">
-        <Stack.Screen
-          name="NewsList"
-          component={NewsList}
-          options={{ title: 'ニュース' }}
-        />
-        <Stack.Screen
-          name="NewsDetail"
-          component={NewsDetail}
-          options={{ title: 'Game Detail' }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
+      <Button title="Go to Details" onPress={() => navigation.navigate('Details')} />
+    </View>
   );
 };
 
-export default App;
+const DetailsScreen = ({ navigation }: any) => {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Details Screen</Text>
+      <Button title="Go back" onPress={() => navigation.goBack()} />
+    </View>
+  );
+};
 
-
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
