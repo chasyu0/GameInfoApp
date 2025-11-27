@@ -8,7 +8,8 @@ export interface Game {
     name: string;
     released: string;
     rating: number;
-    backgroundImage: string;
+    background_image: string;
+    description: string;  // 옵셔널로 추가
 }
 
 // 모든 게임 정보 가져오기 

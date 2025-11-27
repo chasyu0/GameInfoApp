@@ -1,9 +1,13 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ViewStyle } from 'react-native';
 
-const NavBar: React.FC = () => {
+type NavBarProps = {
+  style?: ViewStyle;
+};
+
+const NavBar: React.FC<NavBarProps> = ({ style }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       {['ニュース', '新作', '人気', 'マイリスト'].map((item) => (
         <TouchableOpacity key={item} style={styles.button}>
           <Text style={styles.label}>{item}</Text>
@@ -20,7 +24,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingVertical: 12,
-    backgroundColor: '#217d8dff',
+    backgroundColor: '#77ebffff',
   },
   button: {
     paddingHorizontal: 8,
