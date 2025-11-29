@@ -39,6 +39,6 @@ export const newsItemStyles = StyleSheet.create({
 
   subtext: {
     fontSize: 12,
-    color: '#973d3dff', // 일본 뉴스앱 느낌의 포인트 색
+    color: '#973d3dff', // 뉴스앱 느낌의 포인트 색
   },
 });

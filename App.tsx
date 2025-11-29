@@ -1,41 +1,30 @@
-// App.tsx
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { View, Text, Button } from 'react-native';
-
-type RootStackParamList = {
-  Home: undefined;
-  Details: undefined;
-};
-
-const Stack = createStackNavigator<RootStackParamList>();
-
-const HomeScreen = ({ navigation }: any) => {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button title="Go to Details" onPress={() => navigation.navigate('Details')} />
-    </View>
-  );
-};
-
-const DetailsScreen = ({ navigation }: any) => {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-    </View>
-  );
-};
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import NewsList from './screens/NewsList';
+import NewsDetail from './screens/NewsDetail';
+import Header from './components/Header';
 
 export default function App() {
+  const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
+
+  const handlePressGame = (gameId: number) => {
+    setSelectedGameId(gameId);
+  };
+
+  const handleGoBack = () => {
+    setSelectedGameId(null);
+  };
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View style={{ flex: 1 }}>
+      {/* 화면 상단에 항상 Header */}
+      <Header title={selectedGameId === null ? "뉴스" : "詳細"} />
+
+      {selectedGameId === null ? (
+        <NewsList onPressGame={handlePressGame} />
+      ) : (
+        <NewsDetail gameId={selectedGameId} onGoBack={handleGoBack} />
+      )}
+    </View>
   );
 }

@@ -3,13 +3,18 @@ import { View, Text, TouchableOpacity, StyleSheet, ViewStyle } from 'react-nativ
 
 type NavBarProps = {
   style?: ViewStyle;
+  onPressItem?: (item: string) => void;
 };
 
-const NavBar: React.FC<NavBarProps> = ({ style }) => {
+const NavBar: React.FC<NavBarProps> = ({ style, onPressItem }) => {
   return (
     <View style={[styles.container, style]}>
-      {['ニュース', '新作', '人気', 'マイリスト'].map((item) => (
-        <TouchableOpacity key={item} style={styles.button}>
+      {['뉴스', '新作', '人気', 'MYLIST'].map((item) => (
+        <TouchableOpacity 
+        key={item} 
+        style={styles.button}
+        onPress={()=>onPressItem?.(item)}
+        >
           <Text style={styles.label}>{item}</Text>
         </TouchableOpacity>
       ))}
@@ -20,18 +25,18 @@ const NavBar: React.FC<NavBarProps> = ({ style }) => {
 export default NavBar;
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingVertical: 12,
-    backgroundColor: '#77ebffff',
+  container: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-around', 
+    paddingVertical: 12, 
+    backgroundColor: '#77ebffff' 
   },
-  button: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
+  button: { 
+    paddingHorizontal: 8, 
+    paddingVertical: 4 
   },
-  label: {
-    fontSize: 16,
-    fontWeight: 'bold',
+  label: { 
+    fontSize: 16, 
+    // fontWeight: 'bold' 
   },
 });

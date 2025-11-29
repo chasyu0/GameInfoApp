@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { newsItemStyles, newsItemStyles as styles } from '../styles/NewsItem';
+import { newsItemStyles as styles } from '../styles/NewsItem';
 
 type Props = {
   title: string;
