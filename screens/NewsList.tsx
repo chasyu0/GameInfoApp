@@ -57,6 +57,7 @@ const NewsList: React.FC<NewsListProps> = ({ onPressGame }) => {
         <NewsBox
         title={item.name ?? 'No Title'}
         subtext={`Rating: ${item.rating ?? 'N/A'}`}
+        description={item.description ?? 'No description available'}
         image={{ uri: item.backgroundImage || 'https://picsum.photos/200' }} 
         onPress={() => onPressGame(item.id)}
       />

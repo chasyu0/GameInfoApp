@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Text, Image, ScrollView, View, StyleSheet } from 'react-native';
+import { Text, Image, ScrollView, View } from 'react-native';
 import { Game, getGameById } from '../api/rawg';
 import NavBar from '../components/NavBar';
+import { newsDetail, newsDetail as styles } from '../styles/NewsDetail.styles';
 
 interface Props {
   gameId: number;
@@ -22,9 +23,9 @@ const NewsDetail: React.FC<Props> = ({ gameId, onGoBack }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
+      <ScrollView contentContainerStyle={{ paddingBottom: 80, alignItems: 'center' }}>
         <Text style={styles.title}>{game.name}</Text>
-        <Image source={{ uri: game.background_image }} style={styles.image} />
+        <Image source={{ uri: game.backgroundImage }} style={newsDetail.image} />
         <Text style={styles.subtext}>Rating: {game.rating}</Text>
         <Text style={styles.description}>{game.description || 'No description available'}</Text>
       </ScrollView>
@@ -43,21 +44,3 @@ const NewsDetail: React.FC<Props> = ({ gameId, onGoBack }) => {
 };
 
 export default NewsDetail;
-
-const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#fff' },
-    title: { fontSize: 24, fontWeight: 'bold', margin: 12 },
-    image: { width: '100%', height: 200, marginBottom: 12 },
-    subtext: { fontSize: 16, marginBottom: 12 },
-    description: { 
-      fontSize: 14, 
-      lineHeight: 20, 
-      marginBottom: 12 
-    },
-      navbar: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-    },
-});
