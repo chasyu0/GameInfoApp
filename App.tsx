@@ -6,12 +6,15 @@ import Header from './components/Header';
 
 export default function App() {
   const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
+  const [summary, setSummary] = useState<string | null>(null);
+
 
   const handlePressGame = (gameId: number) => {
     setSelectedGameId(gameId);
   };
 
-  const handleGoBack = () => {
+  const handleGoBack = (summaryFromDetail?: string) => {
+    if (summaryFromDetail) setSummary(summaryFromDetail);
     setSelectedGameId(null);
   };
 
@@ -21,7 +24,7 @@ export default function App() {
       <Header title={selectedGameId === null ? "뉴스" : "詳細"} />
 
       {selectedGameId === null ? (
-        <NewsList onPressGame={handlePressGame} />
+        <NewsList onPressGame={handlePressGame} summary={summary} />
       ) : (
         <NewsDetail gameId={selectedGameId} onGoBack={handleGoBack} />
       )}

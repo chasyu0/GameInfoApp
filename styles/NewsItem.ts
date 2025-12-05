@@ -41,4 +41,11 @@ export const newsItemStyles = StyleSheet.create({
     fontSize: 12,
     color: '#973d3dff', // 뉴스앱 느낌의 포인트 색
   },
+
+  description: {
+    fontSize: 12,
+    color: '#444',
+    marginTop: 3,
+  }
+
 });

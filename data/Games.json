@@ -4,20 +4,23 @@
     "name": "Demo Game",
     "released": "2025-01-01",
     "rating": 4.5,
-    "backgroundImage": "https://example.com/image.png"
+    "backgroundImage": "https://example.com/image.png",
+    "description": "This is a sample game used for testing."
   },
   {
     "id": 2,
     "name": "Adventure Quest",
     "released": "2025-02-10",
     "rating": 4.2,
-    "backgroundImage": "https://example.com/image2.png"
+    "backgroundImage": "https://example.com/image2.png",
+    "description": "This is a sample game used for testing."
   },
   {
     "id": 3,
     "name": "Space Battle",
     "released": "2025-03-05",
     "rating": 3.8,
-    "backgroundImage": "https://example.com/image3.png"
+    "backgroundImage": "https://example.com/image3.png",
+    "description": "This is a sample game used for testing."
   }
 ]

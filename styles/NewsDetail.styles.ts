@@ -18,6 +18,7 @@ export const newsDetail = StyleSheet.create({
         width: '100%',           // 화면 가로 전체
         alignItems: 'center',    // 가로 중앙 정렬
         marginBottom: 12,
+        justifyContent: 'center'
     },
 
     image: { 
@@ -27,12 +28,19 @@ export const newsDetail = StyleSheet.create({
         marginBottom: 12,
     },
 
-    subtext: { fontSize: 16, marginBottom: 12 },
+    subtext: { 
+      fontSize: 16, 
+      marginBottom: 12 
+    },
+
     description: { 
         fontSize: 14, 
         lineHeight: 20, 
-        marginBottom: 12 
+        marginBottom: 12, 
+        marginHorizontal: 16,
+        color: '#333',
     },
+    
     navbar: {
         position: 'absolute',
         bottom: 0,
