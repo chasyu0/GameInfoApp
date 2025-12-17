@@ -19,5 +19,31 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
+
+  //버튼
+  pagination: {
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  paddingVertical: 12,
+  backgroundColor: '#eaffef',
+},
+
+pageButton: {
+  fontSize: 16,
+  marginHorizontal: 20,
+  color: '#007b55',
+  fontWeight: 'bold',
+  cursor: 'pointer', // 웹용
+},
+
+pageText: {
+  fontSize: 16,
+  fontWeight: 'bold',
+},
+
+disabled: {
+  color: '#aaa',
+},
 });

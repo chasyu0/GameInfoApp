@@ -6,27 +6,25 @@ import Header from './components/Header';
 
 export default function App() {
   const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
-  const [summary, setSummary] = useState<string | null>(null);
 
-
-  const handlePressGame = (gameId: number) => {
-    setSelectedGameId(gameId);
-  };
-
-  const handleGoBack = (summaryFromDetail?: string) => {
-    if (summaryFromDetail) setSummary(summaryFromDetail);
+  const handleGoBack = () => {
     setSelectedGameId(null);
-  };
+  }
 
   return (
     <View style={{ flex: 1 }}>
       {/* 화면 상단에 항상 Header */}
-      <Header title={selectedGameId === null ? "뉴스" : "詳細"} />
+      <Header
+        title={selectedGameId === null ? '뉴스' : '상세'}
+        onBack={selectedGameId !== null ? handleGoBack : undefined} />
 
       {selectedGameId === null ? (
-        <NewsList onPressGame={handlePressGame} summary={summary} />
+         <NewsList onPressGame={setSelectedGameId} />
       ) : (
-        <NewsDetail gameId={selectedGameId} onGoBack={handleGoBack} />
+        <NewsDetail
+          gameId={selectedGameId}
+          onGoBack={() => setSelectedGameId(null)}
+        />
       )}
     </View>
   );
