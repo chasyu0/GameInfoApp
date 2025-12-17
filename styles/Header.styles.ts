@@ -1,24 +1,34 @@
+import { StyleSheet } from 'react-native';
 
+export const headerStyles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+    backgroundColor: '#fff',
+  },
 
-const styles = {
-  container: `
-    display: flex;
-    align-items: center;
-    height: 56px;
-    padding: 0 16px;
-    border-bottom: 1px solid #ddd;
-    background: #fff;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  `,
-  backButton: `
-    margin-right: 12px;
-  `,
-  title: `
-    font-size: 20px;
-    font-weight: bold;
-  `,
-};
+  backButton: {
+    width: 40,
+    justifyContent: 'center',
+  },
 
-export default styles;
+  backText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+
+  placeholder: {
+    width: 40,
+  },
+
+  title: {
+    flex: 1,
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+});

@@ -1,8 +1,6 @@
 import React from 'react';
-import { Button } from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import styles from '../styles/Header.styles';
-
+import { View, Text, TouchableOpacity } from 'react-native';
+import { headerStyles as styles } from '../styles/Header.styles';
 
 interface HeaderProps {
   title: string;
@@ -11,20 +9,20 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ title, onBack }) => {
   return (
-    <div className={styles.container}>
-      {onBack && (
-        <Button
-          variant="outlined"
-          startIcon={<ArrowBackIcon />}
-          onClick={onBack}
-          className={styles.backButton}
-        >
-          나가기
-        </Button>
+    <View style={styles.container}>
+      {onBack ? (
+        <TouchableOpacity onPress={onBack} style={styles.backButton}>
+          <Text style={styles.backText}>←</Text>
+        </TouchableOpacity>
+      ) : (
+        <View style={styles.placeholder} />
       )}
 
-      <h1 className={styles.title}>{title}</h1>
-    </div>
+      <Text style={styles.title}>{title}</Text>
+
+      {/* 오른쪽 균형용 placeholder */}
+      <View style={styles.placeholder} />
+    </View>
   );
 };
 

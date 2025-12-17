@@ -46,4 +46,25 @@ pageText: {
 disabled: {
   color: '#aaa',
 },
+
+pagination: {
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  paddingVertical: 12,
+  gap: 12,
+},
+
+pageButton: {
+  paddingHorizontal: 12,
+  paddingVertical: 6,
+  backgroundColor: '#eee',
+  borderRadius: 4,
+},
+
+pageText: {
+  fontSize: 16,
+  fontWeight: 'bold',
+},
+
 });

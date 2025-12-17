@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, View, Text } from 'react-native';
+import { FlatList, View, Text, TouchableOpacity } from 'react-native';
 import NewsBox from '../components/NewsBox';
 import { Game, getGames } from '../api/rawg';
 import NavBar from '../components/NavBar';
@@ -17,7 +17,17 @@ const NewsList: React.FC<NewsListProps> = ({ onPressGame }) => {
   const [games, setGames] = useState<Game[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
+  const totalPages = Math.ceil(allGames.length/PAGE_SIZE);
+
+  const goToPage = (targetPage: number) => {
+      if (targetPage < 1 || targetPage > totalPages) return;
+
+        const start = (targetPage - 1) * PAGE_SIZE;
+        const end = start + PAGE_SIZE;
+
+        setGames(allGames.slice(start, end));
+        setPage(targetPage);
+    };
 
   useEffect(() => {
     (async () => {
@@ -34,23 +44,6 @@ const NewsList: React.FC<NewsListProps> = ({ onPressGame }) => {
     })();
   }, []);
 
-  const loadMore = () => {
-    if (loadingMore) return;
-
-    setLoadingMore(true);  // 추가됨
-
-    const nextPage = page + 1;
-    const start = (nextPage - 1) * PAGE_SIZE;
-    const end = start + PAGE_SIZE;
-    const nextItems = allGames.slice(start, end);
-
-    if (nextItems.length > 0) {
-      setGames(prev => [...prev, ...nextItems]);
-      setPage(nextPage);
-    }
-    setLoadingMore(false);
-  };
-
     if (loading) {
       return (
         <View style={styles.loadingContainer}>
@@ -61,12 +54,12 @@ const NewsList: React.FC<NewsListProps> = ({ onPressGame }) => {
 
   return (
   <View style={styles.container}>
+    {/* 게임 리스트 */}
     <FlatList
       data={games}
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }: { item: Game }) => {
         const summary = `${item.name} was released on ${item.released}.`;
-
 
         return (
           <NewsBox
@@ -77,10 +70,31 @@ const NewsList: React.FC<NewsListProps> = ({ onPressGame }) => {
           />
         );
       }}
-      // onEndReached={loadMore}
-      // onEndReachedThreshold={0.5}
-      // contentContainerStyle={{ paddingBottom: 80 }}
     />
+
+    {/* 페이지 버튼 영역 */}
+    <View style={styles.pagination}>
+      <TouchableOpacity
+        disabled={page === 1}
+        onPress={() => goToPage(page - 1)}
+        style={styles.pageButton}
+      >
+        <Text>Prev</Text>
+      </TouchableOpacity>
+
+      <Text style={styles.pageText}>
+        {page} / {totalPages}
+      </Text>
+
+      <TouchableOpacity
+        disabled={page === totalPages}
+        onPress={() => goToPage(page + 1)}
+        style={styles.pageButton}
+      >
+        <Text>Next</Text>
+      </TouchableOpacity>
+    </View>
+
     <NavBar />
   </View>
 );

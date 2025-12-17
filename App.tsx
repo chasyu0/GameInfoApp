@@ -23,7 +23,7 @@ export default function App() {
       ) : (
         <NewsDetail
           gameId={selectedGameId}
-          onGoBack={() => setSelectedGameId(null)}
+          onGoBack={handleGoBack}
         />
       )}
     </View>
