@@ -1,63 +1,40 @@
 const express = require("express");
+const fs = require("fs");
 const cors = require("cors");
-const axios = require("axios");
-require("dotenv").config();
+const path = require("path");
 
 const app = express();
 const PORT = 8080;
 
-app.use(cors());
+app.use(cors()); // React Native에서 CORS 문제 방지
 
-const RAWG_BASE = "https://api.rawg.io/api";
-const RAWG_KEY = process.env.RAWG_API_KEY;
-
-// 게임 리스트 (실시간)
-app.get("/games", async (req, res) => {
+// /games 엔드포인트
+app.get("/games", (req, res) => {
   try {
-    const response = await axios.get(`${RAWG_BASE}/games`, {
-      params: {
-        key: RAWG_KEY,
-        page_size: 20,
-      },
-    });
-
-    const games = response.data.results.map(g => ({
-      id: g.id,
-      name: g.name,
-      released: g.released,
-      rating: g.rating,
-      backgroundImage: g.background_image,
-
-      // 리스트용 자동 요약
-      description: `${g.name} was released on ${g.released} and received a rating of ${g.rating}.`
-    }));
-
+    const data = fs.readFileSync(path.join(__dirname, "games.json"), "utf-8");
+    const games = JSON.parse(data);
+    console.log("Loaded games:", games); // 배열 길이만 확인
     res.json(games);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ message: "RAWG fetch failed" });
+  } catch (error) {
+    console.error("Error reading games.json:", error);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
-// 게임 상세
-app.get("/games/:id", async (req, res) => {
+// 특정 게임 조회
+app.get("/games/:id", (req, res) => {
   try {
-    const response = await axios.get(`${RAWG_BASE}/games/${req.params.id}`, {
-      params: { key: RAWG_KEY },
-    });
-
-    const g = response.data;
-
-    res.json({
-      id: g.id,
-      name: g.name,
-      released: g.released,
-      rating: g.rating,
-      backgroundImage: g.background_image,
-      description_raw: g.description_raw,
-    });
-  } catch (err) {
-    res.status(500).json({ message: "Game fetch failed" });
+    const data = fs.readFileSync(path.join(__dirname, "./games.json"), "utf-8");
+    const games = JSON.parse(data);
+    const game = games.find(g => g.id === parseInt(req.params.id));
+    if (game) {
+      res.json(game);
+    } else {
+      res.status(404).json({ message: "Game not found" });
+    }
+  } catch (error) {
+    console.error("Error reading games.json:", error);
+    res.status(500).json({ message: "Server error" });
   }
 });
 

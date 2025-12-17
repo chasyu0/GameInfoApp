@@ -4,6 +4,7 @@ import NewsBox from '../components/NewsBox';
 import { Game, getGames } from '../api/rawg';
 import NavBar from '../components/NavBar';
 import styles from '../styles/NewsList.styles';
+import { summarize } from '../data/Summary';
 
 interface NewsListProps {
   onPressGame: (gameId: number) => void;
@@ -23,7 +24,6 @@ const NewsList: React.FC<NewsListProps> = ({ onPressGame }) => {
     (async () => {
       try {
         const data = await getGames();
-        // console.log("FETCHED GAMES:", data);  // 콘솔 확인용 코드
         setAllGames(data);
         setGames(data.slice(0, PAGE_SIZE));
       } catch (err) {
@@ -60,30 +60,28 @@ const NewsList: React.FC<NewsListProps> = ({ onPressGame }) => {
     }
 
   return (
-  <View style={styles.container}>
-    <FlatList
-      data={games}
-      keyExtractor={(item) => item.id.toString()}
-      renderItem={({ item }: { item: Game }) => {
-        const summary = `${item.name} was released on ${item.released}.`;
-
-
-        return (
+    <View style={styles.container}>
+      <FlatList
+        data={games}
+        keyExtractor={(item, index) => (item.id ? item.id.toString() : index.toString())}
+        renderItem={({ item }) => (
           <NewsBox
-            title={item.name}
-            subtext={`⭐ ${item.rating} · ${summary}`}
+            title={item.name ?? 'No Title'} 
+            subtext={
+              item.description_raw ? 
+              `Rating: ${item.rating} | ${summarize(item.description_raw)}`: `Rating: ${item.rating}`}
             image={{ uri: item.backgroundImage }}
             onPress={() => onPressGame(item.id)}
           />
-        );
-      }}
-      // onEndReached={loadMore}
-      // onEndReachedThreshold={0.5}
-      // contentContainerStyle={{ paddingBottom: 80 }}
-    />
-    <NavBar />
-  </View>
-);
-}
+        )}
+        onEndReached={loadMore}
+        onEndReachedThreshold={0.5} 
+        contentContainerStyle={{ paddingBottom: 80 }}
+      />
+      <NavBar />
+    </View> 
+  );
+};
 
 export default NewsList;
+ 

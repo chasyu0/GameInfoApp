@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-// apiConfig.ts
-export const API_MODE = 'RAWG'; // or 'LOCAL'
-
 // 서버 주소 (React Native에서 실제 기기 테스트 시 ip 사용) 
 const BASE_URL = 'http://localhost:8080';
 
@@ -14,14 +11,12 @@ export interface Game {
     rating: number;
     description_raw?: string;
     description?: string;  // 옵셔널로 추가
-    summary?: string;
 }
 
 // 모든 게임 정보 가져오기 
 export async function getGames(): Promise<Game[]> {
   try {
     const response = await axios.get<Game[]>(`${BASE_URL}/games`);
-    // console.log("API RESPONSE:", response.data);  // 콘솔 확인용 코드
     return response.data;
   } catch (error) {
     console.error("Error fetching games:", error);

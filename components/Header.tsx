@@ -1,31 +1,27 @@
 import React from 'react';
-import { Button } from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import styles from '../styles/Header.styles';
+import { View, Text, StyleSheet } from 'react-native';
 
-
-interface HeaderProps {
-  title: string;
-  onBack?: () => void;
-}
-
-const Header: React.FC<HeaderProps> = ({ title, onBack }) => {
+const Header: React.FC<{ title: string }> = ({ title }) => {
   return (
-    <div className={styles.container}>
-      {onBack && (
-        <Button
-          variant="outlined"
-          startIcon={<ArrowBackIcon />}
-          onClick={onBack}
-          className={styles.backButton}
-        >
-          나가기
-        </Button>
-      )}
-
-      <h1 className={styles.title}>{title}</h1>
-    </div>
+    <View style={styles.container}>
+      <Text style={styles.text}>{title}</Text>
+    </View>
   );
 };
 
 export default Header;
+
+const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+    backgroundColor: '#fff',
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+});
