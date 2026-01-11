@@ -5,16 +5,19 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: '#b9ffc7ff',
   },
+
   listContainer: {
     flex: 1,
     position: 'relative',
   },
+
   navbar: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
   },
+
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -27,7 +30,7 @@ export default StyleSheet.create({
   justifyContent: 'center',
   alignItems: 'center',
   paddingVertical: 12,
-  backgroundColor: '#eaffef',
+  backgroundColor: '#d5d5d5ff',
 },
 
 pageButton: {
@@ -45,26 +48,6 @@ pageText: {
 
 disabled: {
   color: '#aaa',
-},
-
-pagination: {
-  flexDirection: 'row',
-  justifyContent: 'center',
-  alignItems: 'center',
-  paddingVertical: 12,
-  gap: 12,
-},
-
-pageButton: {
-  paddingHorizontal: 12,
-  paddingVertical: 6,
-  backgroundColor: '#eee',
-  borderRadius: 4,
-},
-
-pageText: {
-  fontSize: 16,
-  fontWeight: 'bold',
 },
 
 });

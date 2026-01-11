@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, Image, ScrollView, View } from 'react-native';
 import { Game, getGameById } from '../api/rawg';
-import NavBar from '../components/NavBar';
 import { newsDetail as styles } from '../styles/NewsDetail.styles';
 
 interface Props {
@@ -41,13 +40,6 @@ const NewsDetail: React.FC<Props> = ({ gameId, onGoBack }) => {
     <Text style={styles.subtext}>Rating: {game.rating}</Text>
     <Text style={styles.description}>{raw}</Text>
     </ScrollView>
-    
-      {/* 하단 고정 NavBar */}
-      <NavBar
-        onPressItem={(item) => {
-         if (item === '뉴스') onGoBack();
-        }}
-      />
     </View>
   );
 };

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, View, Text, TouchableOpacity } from 'react-native';
 import NewsBox from '../components/NewsBox';
 import { Game, getGames } from '../api/rawg';
-import NavBar from '../components/NavBar';
 import styles from '../styles/NewsList.styles';
 
 interface NewsListProps {
@@ -18,6 +17,7 @@ const NewsList: React.FC<NewsListProps> = ({ onPressGame }) => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const totalPages = Math.ceil(allGames.length/PAGE_SIZE);
+  const [likedIds, setLikedIds] = useState<number[]>([]); // 좋아요
 
   const goToPage = (targetPage: number) => {
       if (targetPage < 1 || targetPage > totalPages) return;
@@ -27,6 +27,14 @@ const NewsList: React.FC<NewsListProps> = ({ onPressGame }) => {
 
         setGames(allGames.slice(start, end));
         setPage(targetPage);
+    };
+
+    const toggleLike = (id:number) => {
+      setLikedIds(prev => 
+        prev.includes(id) 
+        ? prev.filter(v => v! == id) 
+          : [...prev, id]
+    );
     };
 
   useEffect(() => {
@@ -94,8 +102,6 @@ const NewsList: React.FC<NewsListProps> = ({ onPressGame }) => {
         <Text>Next</Text>
       </TouchableOpacity>
     </View>
-
-    <NavBar />
   </View>
 );
 }

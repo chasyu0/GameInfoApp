@@ -46,6 +46,21 @@ export const newsItemStyles = StyleSheet.create({
     fontSize: 12,
     color: '#444',
     marginTop: 3,
-  }
+  },
+
+  rightBox: {
+  alignItems: 'center',
+},
+
+titleRow: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  // justifyContent: 'space-between',
+},
+
+heart: {
+  marginLeft: 6,
+  marginTop: 5, 
+},
 
 });
